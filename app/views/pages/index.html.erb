@@ -1,0 +1,23 @@
+<h1>Wikipedia Scraper</h1>
+
+<%= form_tag(scrape_path, method: :post) do %>
+  <%= label_tag :wikipedia_link, 'Wikipedia Link:' %>
+  <%= text_field_tag :wikipedia_link %>
+  <%= submit_tag 'Scrape' %>
+<% end %>
+
+<% if @data.present? %>
+  <h2>Title: <%= @data[:title] %></h2>
+  <h3>Languages:</h3>
+  <% @data[:languages].each do |language| %>
+    <p><%= language %></p>
+  <% end %>
+<% end %>
+
+<% if @errors.any? %>
+  <div class="error">
+    <% @errors.each do |error| %>
+        <h2><%= error %></h2><br>
+    <% end %>
+  </div>
+<% end %>
